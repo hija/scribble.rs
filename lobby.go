@@ -194,10 +194,10 @@ func wsListen(lobby *Lobby, player *Player, socket *websocket.Conn) {
 			if websocket.IsCloseError(err) || websocket.IsUnexpectedCloseError(err) {
 				socket.CloseHandler()
 				log.Println(player.Name + " disconnected.")
-				return
 			} else {
 				log.Printf("Error reading from socket: %s\n", err)
 			}
+			return
 		} else if messageType == websocket.TextMessage {
 			received := &JSEvent{}
 			err := json.Unmarshal(data, received)
